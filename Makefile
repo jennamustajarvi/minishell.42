@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-san- <lde-san-@student.42porto.co      +#+  +:+       +#+         #
+#    By: lde-san- <lde-san-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/28 20:19:38 by lde-san-          #+#    #+#              #
-#    Updated: 2026/04/01 02:49:53 by lde-san-         ###   ########.fr        #
+#    Updated: 2026/10/05 18:42:22 by lde-san-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -211,12 +211,15 @@ open:
 	find . -maxdepth 2 -name "*.h" -exec xdg-open {} \;
 	@printf "$(RSET)"
 
-leaks: $(NAME) $(SUPRS) | valgrind_env 
+leaks: $(NAME) $(SUPRS) | valgrind_env
 	@printf "\n$(PINK)valgrind $(ORNG)$(VLGR_FLAGS) $(LIME)--suppressions=$(BABY)$(SUPRS) $(MINT)./$(NAME)"
 	@printf "$(RSET)\n\n"
 	@sleep 0.3
 	@./valgrind_env.sh
 	@rm valgrind_env.sh
+
+get_readline:
+	sudo apt-get install libreadline-dev
 
 $(SUPRS): $(OBJ_DIR)
 	@printf "$(NEOR) Building obj/.valgrind_suppressions.txt... $(RESET)"
